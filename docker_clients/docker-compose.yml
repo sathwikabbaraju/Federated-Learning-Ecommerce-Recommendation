@@ -1,0 +1,67 @@
+version: "3.8"
+
+services:
+  fl_client_1:
+    build: .
+    container_name: fl_client_1
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=172.20.0.2:8080  # Direct IP of fl_server
+      - CLIENT_NAME=fl_client_1
+
+  fl_client_2:
+    build: .
+    container_name: fl_client_2
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=172.20.0.2:8080
+      - CLIENT_NAME=fl_client_2
+
+networks:
+  fl_network:
+    external: true  # Ensure it connects to the existing federated network
+    
+# version: "3.8"
+
+# services:
+#   docker_clients:
+#     build: .
+#     container_name: docker_clients
+#     networks:
+#       - fl_network
+#     environment:
+#       - SERVER_ADDRESS=fl_server:8080  # Make sure this matches the FL server
+
+# networks:
+#   fl_network:
+#     external: true  # Connect to the already created network
+
+
+# version: "3.8"
+
+# services:
+#   fl_client_1:
+#     build: .
+#     container_name: fl_client_1
+#     depends_on:
+#       - fl_server
+#     networks:
+#       - fl_network
+#     environment:
+#       - SERVER_ADDRESS=fl_server:8080
+
+#   fl_client_2:
+#     build: .
+#     container_name: fl_client_2
+#     depends_on:
+#       - fl_server
+#     networks:
+#       - fl_network
+#     environment:
+#       - SERVER_ADDRESS=fl_server:8080
+
+# networks:
+#   fl_network:
+#     driver: bridge
