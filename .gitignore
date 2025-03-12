@@ -1,0 +1,8 @@
+__pycache__/
+*.log
+# Ignore only large CSV files (over 100MB)
+Amazon Product Sales Dataset 2023/Amazon-Products.csv
+
+*.pkl
+.env
+docker-compose.override.yml
