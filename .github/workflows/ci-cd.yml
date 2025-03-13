@@ -32,16 +32,24 @@ jobs:
           else
             echo "No tests directory found, skipping tests."
           fi
-      
-      - name: Build Docker Images
+
+      - name: Build Docker Images for Server & Clients
         run: |
-          docker build -t fl_server ./server
-          docker build -t fl_client ./clients/client_1
+          cd fl_server
+          docker build -t fl_server .
+          cd ..
+
+          cd docker_clients
+          docker build -t fl_client_1 -f Dockerfile.client1 .
+          docker build -t fl_client_2 -f Dockerfile.client2 .
+          cd ..
 
       - name: Push Docker Images (Optional)
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           docker tag fl_server your_dockerhub_username/fl_server
-          docker tag fl_client your_dockerhub_username/fl_client
+          docker tag fl_client_1 your_dockerhub_username/fl_client_1
+          docker tag fl_client_2 your_dockerhub_username/fl_client_2
           docker push your_dockerhub_username/fl_server
-          docker push your_dockerhub_username/fl_client
+          docker push your_dockerhub_username/fl_client_1
+          docker push your_dockerhub_username/fl_client_2
