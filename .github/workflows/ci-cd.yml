@@ -43,10 +43,10 @@ jobs:
           docker build -t fl_clients -f Dockerfile .  # Use the single existing Dockerfile
           cd ..
 
-      - name: Push Docker Images (Optional)
-        run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-          docker tag fl_server your_dockerhub_username/fl_server
-          docker tag fl_clients your_dockerhub_username/fl_clients
-          docker push your_dockerhub_username/fl_server
-          docker push your_dockerhub_username/fl_clients
+      # - name: Push Docker Images (Optional)
+      #   run: |
+      #     echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      #     docker tag fl_server your_dockerhub_username/fl_server
+      #     docker tag fl_clients your_dockerhub_username/fl_clients
+      #     docker push your_dockerhub_username/fl_server
+      #     docker push your_dockerhub_username/fl_clients
