@@ -1,0 +1,25 @@
+name: Validate Synthetic Dataset CSV Files
+
+on:
+  pull_request:
+    branches:
+      - syncdata  # Runs only on PRs to syncdata branch
+
+jobs:
+  validate_csv:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas
+
+      - name: Run CSV Validation Script
+        run: python .github/scripts/validate_csv.py
