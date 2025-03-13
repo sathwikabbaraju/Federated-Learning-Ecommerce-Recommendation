@@ -1,0 +1,8 @@
+numpy
+pandas
+scikit-learn
+torch
+flwr
+protobuf==3.20.*
+matplotlib
+pytest
