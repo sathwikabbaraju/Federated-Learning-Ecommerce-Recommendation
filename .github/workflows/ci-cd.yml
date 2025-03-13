@@ -1,0 +1,52 @@
+name: CI/CD for FL Project
+
+on:
+  push:
+    branches:
+      - dev
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Unit Tests
+        run: |
+          if [ -d "tests" ]; then
+            pytest tests/
+          else
+            echo "No tests directory found, skipping tests."
+          fi
+
+      - name: Build Docker Images for Server & Clients
+        run: |
+          cd fl_server
+          docker build -t fl_server .
+          cd ..
+          
+          cd docker_clients
+          docker build -t fl_clients -f Dockerfile .  # Use the single existing Dockerfile
+          cd ..
+
+      # - name: Push Docker Images (Optional)
+      #   run: |
+      #     echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      #     docker tag fl_server your_dockerhub_username/fl_server
+      #     docker tag fl_clients your_dockerhub_username/fl_clients
+      #     docker push your_dockerhub_username/fl_server
+      #     docker push your_dockerhub_username/fl_clients
