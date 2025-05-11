@@ -1,27 +1,130 @@
 version: "3.8"
 
 services:
-  fl_client_1:
+  fl_client_1_ratermax:
     build: .
-    container_name: fl_client_1
+    container_name: fl_client_1_ratermax
     networks:
       - fl_network
     environment:
-      - SERVER_ADDRESS=172.20.0.2:8080  # Direct IP of fl_server
-      - CLIENT_NAME=fl_client_1
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_1_ratermax
+    volumes:
+      - ./data/products_ratermax.csv:/app/data/products_ratermax.csv
 
-  fl_client_2:
+  fl_client_2_ratermed:
     build: .
-    container_name: fl_client_2
+    container_name: fl_client_2_ratermed
     networks:
       - fl_network
     environment:
-      - SERVER_ADDRESS=172.20.0.2:8080
-      - CLIENT_NAME=fl_client_2
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_2_ratermed
+    volumes:
+      - ./data/products_ratermed.csv:/app/data/products_ratermed.csv
+
+  fl_client_3_impulsivemax:
+    build: .
+    container_name: fl_client_3_impulsivemax
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_3_impulsivemax
+    volumes:
+      - ./data/products_impulsivemax.csv:/app/data/products_impulsivemax.csv
+
+  fl_client_4_valuerater:
+    build: .
+    container_name: fl_client_4_valuerater
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_4_valuerater
+    volumes:
+      - ./data/products_valuerater.csv:/app/data/products_valuerater.csv
+
+  fl_client_5_midvalue:
+    build: .
+    container_name: fl_client_5_midvalue
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_5_midvalue
+    volumes:
+      - ./data/products_midvalue.csv:/app/data/products_midvalue.csv
+
+  fl_client_6_impulsivemid:
+    build: .
+    container_name: fl_client_6_impulsivemid
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_6_impulsivemid
+    volumes:
+      - ./data/products_impulsivemid.csv:/app/data/products_impulsivemid.csv
+
+  fl_client_7_middiscount:
+    build: .
+    container_name: fl_client_7_middiscount
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_7_middiscount
+    volumes:
+      - ./data/products_middiscount.csv:/app/data/products_middiscount.csv
+
+  fl_client_8_saverpro:
+    build: .
+    container_name: fl_client_8_saverpro
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_8_saverpro
+    volumes:
+      - ./data/products_saverpro.csv:/app/data/products_saverpro.csv
+
+  fl_client_9_savermed:
+    build: .
+    container_name: fl_client_9_savermed
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_9_savermed
+    volumes:
+      - ./data/products_savermed.csv:/app/data/products_savermed.csv
+
+  fl_client_10_saverfree:
+    build: .
+    container_name: fl_client_10_saverfree
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_10_saverfree
+    volumes:
+      - ./data/products_saverfree.csv:/app/data/products_saverfree.csv
+
+  fl_client_11_socialproof:
+    build: .
+    container_name: fl_client_11_socialproof
+    networks:
+      - fl_network
+    environment:
+      - SERVER_ADDRESS=fl_server:8080
+      - CLIENT_NAME=fl_client_11_socialproof
+    volumes:
+      - ./data/products_socialproof.csv:/app/data/products_socialproof.csv
 
 networks:
   fl_network:
-    external: true  # Ensure it connects to the existing federated network
+    external: true
     
 # version: "3.8"
 

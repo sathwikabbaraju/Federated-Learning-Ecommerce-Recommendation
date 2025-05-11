@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Define the required columns
-REQUIRED_COLUMNS = ["name", "main_category", "sub_category", "rating", "no_of_ratings", "discount_price", "actual_price", "purchased"]
+REQUIRED_COLUMNS = ["name", "main_category", "sub_category", "ratings", "no_of_ratings", "discount_price", "actual_price", "purchased"]
 
 # Path to synthetic dataset folder
 DATASET_FOLDER = "synthetic_dataset"
